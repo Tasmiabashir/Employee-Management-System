@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Projects</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% include "navbar.html" %}
+<div class="page">
+  <h2>Projects</h2>
+  <p>Showing 1–{{ projects|length }} of {{ projects|length }} items.</p>
+
+  <table class="project-table">
+    <tr>
+      <th>#</th>
+      <th>Color</th>
+      <th>Project Name</th>
+    </tr>
+
+    {% for p in projects %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>
+        <span class="color-box" style="background: {{ p[2] }}"></span>
+      </td>
+      <td>{{ p[1] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+
+</body>
+</html>

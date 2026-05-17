@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EMS Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% include "navbar.html" %}
+<div class="main-wrap">
+<div class="container home-box">
+    <h2>Welcome {{ username }}</h2>
+    <p>Attendance Management System</p>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+      {% for msg in messages %}
+        <li>{{ msg }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+    <!-- Attendance Buttons -->
+    <form action="/checkin" method="POST">
+        <button type="submit">Check In</button>
+    </form>
+
+    <form action="/breakin" method="POST">
+        <button type="submit">Break In</button>
+    </form>
+
+    <form action="/breakout" method="POST">
+        <button type="submit">Break Out</button>
+    </form>
+
+    <form action="/checkout" method="POST">
+        <button type="submit">Check Out</button>
+    </form>
+
+    <br>
+    <a href="/logout" class="logout">Logout</a>
+</div>
+</div>
+</body>
+</html>

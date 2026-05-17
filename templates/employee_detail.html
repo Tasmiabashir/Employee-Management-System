@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Detail</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% include "navbar.html" %}
+<div class="page">
+
+<h3>Assigned Projects</h3>
+
+{% if projects %}
+  <div class="employee-tags">
+    {% for p in projects %}
+      <span class="emp-tag" style="background: {{ p[2] }}">
+        {{ p[1] }}
+      </span>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="muted">No projects assigned</p>
+{% endif %}
+
+
+  <br>
+</div>
+
+</body>
+</html>

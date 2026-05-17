@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Update Project</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% include "navbar.html" %}
+
+<div class="page">
+
+  <div class="form-box large">
+    <h2>Update Project</h2>
+
+    <form method="POST">
+
+      <label>Name</label>
+      <input type="text" name="name" value="{{ project[1] }}" required>
+
+      <label>Bar Color</label>
+      <input type="color" name="color" value="{{ project[2] }}" required>
+
+      <label>Select users part of this project</label>
+
+<div class="user-select-box">
+
+  <!-- Selected Users (Tags) -->
+  <div id="selectedUsers" class="tag-container">
+    {% for emp in employees %}
+      {% if emp[0] in assigned_ids %}
+        <span class="tag" data-id="{{ emp[0] }}">
+          {{ emp[1] }}
+          <button type="button" onclick="removeUser({{ emp[0] }})">×</button>
+          <input type="hidden" name="employee_ids[]" value="{{ emp[0] }}">
+        </span>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Add Users -->
+  <select id="userSelect">
+    <option value="">+ Add user</option>
+    {% for emp in employees %}
+      {% if emp[0] not in assigned_ids %}
+        <option value="{{ emp[0] }}">{{ emp[1] }}</option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+</div>
+
+
+      <small>Hold Ctrl (Windows) or Cmd (Mac) to select multiple users</small>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Update</button>
+        <a href="/admin/projects" class="btn-cancel">Cancel</a>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+<script>
+function removeUser(id) {
+  const tag = document.querySelector('.tag[data-id="' + id + '"]');
+  if (tag) tag.remove();
+}
+
+document.getElementById("userSelect").addEventListener("change", function () {
+  const userId = this.value;
+  const userName = this.options[this.selectedIndex].text;
+
+  if (!userId) return;
+
+  // Prevent duplicates
+  if (document.querySelector('.tag[data-id="' + userId + '"]')) return;
+
+  const container = document.getElementById("selectedUsers");
+
+  const tag = document.createElement("span");
+  tag.className = "tag";
+  tag.setAttribute("data-id", userId);
+
+  tag.innerHTML = `
+    ${userName}
+    <button type="button" onclick="removeUser(${userId})">×</button>
+    <input type="hidden" name="employee_ids[]" value="${userId}">
+  `;
+
+  container.appendChild(tag);
+  this.value = "";
+});
+</script>
+
+</body>
+</html>

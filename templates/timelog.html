@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee timelog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% include "navbar.html" %}
+
+<div class="page">
+
+  <div class="header">
+    {% macro format_time(seconds) %}
+      {% set h = seconds // 3600 %}
+      {% set m = (seconds % 3600) // 60 %}
+      {{ "%02dh %02dm" % (h, m) }}
+    {% endmacro %}
+
+    <h2>Employee Name: {{ username }}</h2>
+    <button class="purple">Add manual check-in +</button>
+  </div>
+
+  <h3 class="center">{{ month }}/{{ year }}</h3>
+
+  <div class="calendar">
+    {% for day in range(1, 32) %}
+      <div class="day-card">
+
+        <div class="day-number">{{ day }}</div>
+
+        {% if day in days %}
+          <div class="badge total-badge">
+            <span class="dot total"></span>
+            Total: {{ format_time(days[day].total) }}
+          </div>
+
+          <div class="badge online-badge">
+            <span class="dot online"></span>
+            Online: {{ format_time(days[day].online) }}
+          </div>
+
+          <div class="badge break-badge">
+            <span class="dot break"></span>
+            Break: {{ format_time(days[day].break) }}
+          </div>
+
+          <div class="day-actions">
+            💬 ✏️
+          </div>
+        {% else %}
+          <p class="no-data">No Data</p>
+        {% endif %}
+
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+</body>
+</html>

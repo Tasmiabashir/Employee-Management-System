@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% include "navbar.html" %}
+
+ <!-- NAVBAR -->
+  <div class="page">
+    <h2>All Employees List</h2>
+    <table class="project-table">
+  <tr>
+    <th>Name</th>
+    <th>Action</th>
+  </tr>
+
+  {% for emp in employees %}
+<tr>
+  <td>{{ emp[1] }}</td>
+  <td>
+    <a href="/user/timelog/{{ emp[0] }}">See Time Logs</a>
+  </td>
+</tr>
+{% endfor %}
+
+</table>
+
+  </div>
+</body>
+</html>
+

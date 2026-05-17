@@ -1,0 +1,511 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* FIX body centering issue for admin/report pages */
+body {
+  display: block;
+  align-items: unset;
+  justify-content: unset;
+  background: linear-gradient(120deg, #4e73df, #1cc88a);
+}
+
+.main-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  /* vertical center */
+  justify-content: center;
+  /* horizontal center */
+}
+
+.container {
+  background: #fff;
+  width: 350px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+input:focus {
+  border-color: #4e73df;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #4e73df;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px 0px;
+}
+
+button:hover {
+  background: #2e59d9;
+}
+
+.home-box {
+  text-align: center;
+}
+
+.home-box h2 {
+  margin-bottom: 10px;
+}
+
+.home-box p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.logout {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #e74a3b;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.logout:hover {
+  background: #c0392b;
+}
+
+/* =========================
+   ADMIN – EMPLOYEE LIST PAGE
+   ========================= */
+
+.page {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  background: #f6f7fb;
+  border-radius: 12px;
+}
+
+.page h2 {
+  text-align: left;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  overflow: hidden;
+  margin: 30px;
+}
+
+th {
+  background: #f1f3f9;
+  text-align: left;
+  font-weight: 600;
+  color: #444;
+}
+
+td {
+  border-bottom: 1px solid #eee;
+}
+
+.btn {
+  display: inline-block;
+  font-size: 14px;
+}
+
+/* =========================
+   TIME LOG PAGE (CALENDAR)
+   ========================= */
+
+.header {
+  background: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.purple {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.center {
+  font-weight: 600;
+  color: #444;
+}
+
+/* Calendar layout same as screenshot */
+.calendar {
+  background: #f6f7fb;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.day-card {
+  min-height: 140px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-3px);
+}
+
+.day-card strong {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Time rows */
+.day-card p {
+  font-size: 13px;
+  margin-top: 6px;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Icons row (chat / edit like screenshot) */
+.day-card::after {
+  content: "💬 ✏️";
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #7b61ff;
+  cursor: pointer;
+}
+
+/* ======================
+   NAVBAR
+   ====================== */
+
+.navbar {
+  width: 100%;
+  height: 60px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #4e73df;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-user {
+  font-size: 14px;
+  color: #444;
+}
+
+.nav-logout {
+  background: #e74a3b;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-logout:hover {
+  background: #c0392b;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .calendar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .calendar {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* ===== TIMELINE CARD UI ===== */
+
+.day-number {
+  font-size: 14px;
+  font-weight: 600;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  background: #f6f7fb;
+  border-radius: 20px;
+  padding: 6px 10px;
+  margin-top: 6px;
+}
+
+.no-data {
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 20px;
+}
+
+/* Action icons */
+.day-actions {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  font-size: 16px;
+  color: #7b61ff;
+  cursor: pointer;
+}
+
+/* Improve card spacing */
+.day-card {
+  position: relative;
+  padding: 14px;
+  border-radius: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  width: 15%;
+  margin: 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+/* ===== PROJECT TABLE ===== */
+
+.project-table {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.project-table th {
+  text-align: left;
+  padding: 14px;
+  background: #f6f7fb;
+  font-weight: 600;
+}
+
+.project-table td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.color-box {
+  width: 36px;
+  height: 22px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.form-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+}
+
+.form-box label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 500;
+}
+
+/* ===== UPDATE PROJECT FORM ===== */
+
+.form-box.large {
+  max-width: 500px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background: #1cc88a;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background: #e0e0e0;
+  color: #444;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* ===== TAG USER SELECT (UPDATE PROJECT) ===== */
+
+.user-select-box {
+  margin-top: 10px;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tag {
+  background: #f1f3f9;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag button {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  color: #777;
+}
+
+.tag button:hover {
+  color: red;
+}
+
+#userSelect {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.link {
+  text-decoration: none;
+  color: #4e73df;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.employee-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.emp-tag {
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.btn-primary {
+  background: #4e73df;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* ===== MAIN NAVBAR ===== */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4e73df;
+  text-decoration: none;
+}
+
+.nav-link {
+  color: #444;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #4e73df;
+}
+
+.nav-user {
+  font-weight: 500;
+  color: #333;
+}
+
+.nav-logout {
+  background: #e74a3b;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.nav-logout:hover {
+  background: #c0392b;
+}

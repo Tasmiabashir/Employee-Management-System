@@ -1,0 +1,21 @@
+<nav class="navbar">
+  <div class="nav-left">
+    <a href="/" class="logo">EMS</a>
+
+    {% if session.user_id %}
+      <a href="/" class="nav-link">Home</a>
+      <a href="/admin/employees" class="nav-link">Employees</a>
+      <a href="/admin/projects" class="nav-link">Projects</a>
+      <a href="/admin/assign-project" class="nav-link">Assign Project</a>
+    {% endif %}
+  </div>
+
+  <div class="nav-right">
+    {% if session.user_id %}
+      <span class="nav-user">👤 {{ session.username }}</span>
+      <a href="/logout" class="nav-logout">Logout</a>
+    {% else %}
+      <a href="/login" class="nav-link">Login</a>
+    {% endif %}
+  </div>
+</nav>

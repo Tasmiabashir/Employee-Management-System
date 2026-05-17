@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Assign Project</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% include "navbar.html" %}
+
+<div class="page">
+  <h2>Assign Project to Employee</h2>
+
+  <form method="POST" class="form-box">
+
+    <label>Select Employee</label>
+    <select name="employee_id" required>
+      {% for e in employees %}
+        <option value="{{ e[0] }}">{{ e[1] }}</option>
+      {% endfor %}
+    </select>
+
+    <label>Select Project</label>
+    <select name="project_ids[]" multiple required size="5">
+  {% for p in projects %}
+    <option value="{{ p[0] }}">{{ p[1] }}</option>
+  {% endfor %}
+</select>
+
+<small style="color:#666">
+  Hold <b>Ctrl</b> (Windows) or <b>Cmd</b> (Mac) to select multiple projects
+</small>
+
+
+    <button type="submit">Assign</button>
+  </form>
+</div>
+
+</body>
+</html>

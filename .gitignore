@@ -1,0 +1,5 @@
+employees.db
+__pycache__/
+*.pyc
+app - Copy.py
+.env

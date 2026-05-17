@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Project</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% include "navbar.html" %}
+<div class="page">
+  <h2>Create Project</h2>
+
+  <form method="POST" class="form-box">
+    <label>Project Name</label>
+    <input type="text" name="name" required>
+
+    <label>Project Color</label>
+    <input type="color" name="color" required>
+
+    <button type="submit">Create Project</button>
+  </form>
+</div>
+
+</body>
+</html>
